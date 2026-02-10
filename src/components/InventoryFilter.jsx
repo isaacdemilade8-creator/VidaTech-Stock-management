@@ -1,0 +1,40 @@
+import { useState } from "react";
+
+export default function InventoryFilter({ onSearch, onFilter }) {
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("all");
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    onSearch(value);
+  };
+
+  const handleFilterChange = (e) => {
+    const value = e.target.value;
+    setFilter(value);
+    onFilter(value);
+  };
+
+  return (
+    <div className="mb-6 flex flex-col sm:flex-row gap-4 justify-between">
+      <input
+        type="text"
+        placeholder="Search products..."
+        value={search}
+        onChange={handleSearchChange}
+        className="flex-1 p-2 border rounded-lg"
+      />
+
+      <select
+        value={filter}
+        onChange={handleFilterChange}
+        className="p-2 border rounded-lg"
+      >
+        <option value="all">All Products</option>
+        <option value="low">Low Stock (≤10)</option>
+        <option value="high">In Stock (>10)</option>
+      </select>
+    </div>
+  );
+}
