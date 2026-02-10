@@ -1,52 +1,52 @@
+// src/pages/Categories.jsx
+
 import { useInventory } from "../context/InventoryContext";
+import { Link } from "react-router-dom";
 
 export default function Categories() {
   const { products } = useInventory();
 
-  const grouped = products.reduce((acc, p) => {
-    const cat = p.category || "Uncategorized";
+  // Group products by category
+  const categories = products.reduce((acc, product) => {
+    const cat = product.category || "Uncategorized";
 
-    if (!acc[cat]) acc[cat] = [];
+    if (!acc[cat]) {
+      acc[cat] = [];
+    }
 
-    acc[cat].push(p);
+    acc[cat].push(product);
 
     return acc;
   }, {});
 
   return (
-    <div className="space-y-6">
+    <div>
+      <h1 className="text-3xl font-bold mb-6">Categories</h1>
 
-      <h1 className="text-2xl font-bold">
-        Categories
-      </h1>
-
-      {Object.entries(grouped).map(
-        ([cat, items]) => (
-          <div
-            key={cat}
-            className="bg-white p-4 rounded-xl shadow"
-          >
-            <h2 className="font-semibold mb-2">
-              {cat} ({items.length})
-            </h2>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-
-              {items.map((p) => (
-                <div
-                  key={p.id}
-                  className="border p-3 rounded"
-                >
-                  {p.name}
-                </div>
-              ))}
-
-            </div>
-          </div>
-        )
+      {Object.keys(categories).length === 0 && (
+        <p className="text-slate-500">No products yet.</p>
       )}
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {Object.entries(categories).map(
+          ([category, items]) => (
+            <Link
+              to={`/categories/${category}`}
+              key={category}
+              className="bg-white p-5 rounded-xl shadow hover:shadow-md transition"
+            >
+              <h2 className="text-xl font-semibold text-blue-700">
+                {category}
+              </h2>
+
+              <p className="text-slate-500 mt-2">
+                {items.length} product
+                {items.length > 1 && "s"}
+              </p>
+            </Link>
+          )
+        )}
+      </div>
     </div>
   );
 }
-    

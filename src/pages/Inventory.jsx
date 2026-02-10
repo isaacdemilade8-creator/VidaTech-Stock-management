@@ -3,12 +3,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useInventory } from "../context/InventoryContext";
-
+import { useHistoryLog } from "../context/HistoryContext";
 import InventoryGrid from "../components/InventoryGrid";
 import AddProductModal from "../components/AddProductModal";
 import InventoryFilter from "../components/InventoryFilter";
 
 export default function Inventory() {
+  const { addHistory } = useHistoryLog();
   const { user } = useContext(AuthContext);
 
   const {
@@ -30,44 +31,70 @@ export default function Inventory() {
   // =============================
 
   const handleAdd = (product) => {
-    addProduct(product);
-  };
-
+  addProduct(product);
+  addHistory({
+    type: "ADD",
+    product,
+    user: user.storeName,
+  });
+};
   const handleRestock = (id) => {
-    const item = products.find((p) => p.id === id);
+  const item = products.find((p) => p.id === id);
+  if (!item) return;
 
-    if (!item) return;
+  updateProduct({
+    ...item,
+    quantity: item.quantity + 5,
+  });
 
-    updateProduct({
-      ...item,
-      quantity: item.quantity + 5,
-    });
-  };
+  addHistory({
+    type: "RESTOCK",
+    product: item,
+    user: user.storeName,
+  });
+};
 
   const handleSell = (id) => {
-    const item = products.find((p) => p.id === id);
+  const item = products.find((p) => p.id === id);
+  if (!item) return;
 
-    if (!item) return;
+  updateProduct({
+    ...item,
+    quantity: Math.max(item.quantity - 1, 0),
+  });
 
-    updateProduct({
-      ...item,
-      quantity: Math.max(item.quantity - 1, 0),
-    });
-  };
+  addHistory({
+    type: "SELL",
+    product: item,
+    user: user.storeName,
+  });
+};
 
   const handleDelete = (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this product?"
-    );
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this product?"
+  );
+  if (!confirmed) return;
 
-    if (!confirmed) return;
+  const item = products.find((p) => p.id === id);
+  deleteProduct(id);
 
-    deleteProduct(id);
-  };
+  addHistory({
+    type: "DELETE",
+    product: item,
+    user: user.storeName,
+  });
+};
 
   const handleUpdate = (updatedProduct) => {
-    updateProduct(updatedProduct);
-  };
+  updateProduct(updatedProduct);
+
+  addHistory({
+    type: "UPDATE",
+    product: updatedProduct,
+    user: user.storeName,
+  });
+};
 
   // =============================
   // Search & Filter

@@ -1,5 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+// src/pages/Dashboard.jsx
+
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useInventory } from "../context/InventoryContext";
+
 import DashboardStats from "../components/DashboardStats";
 import RecentProducts from "../components/RecentProducts";
 import CategoryChart from "../components/CategoryChart";
@@ -7,13 +11,7 @@ import ValueChart from "../components/ValueChart";
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    if (!user) return;
-    const allProducts = JSON.parse(localStorage.getItem("storeProducts")) || {};
-    setProducts(allProducts[user.storeName] || []);
-  }, [user]);
+  const { products } = useInventory(); // ✅ Connected to inventory
 
   return (
     <div>

@@ -6,6 +6,8 @@ import Inventory from "./pages/Inventory";
 import AppLayout from "./layouts/AppLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Categories from "./pages/Categories";
+import CategoryDetails from "./pages/CategoryDetails";
+import HistoryPage from "./pages/HistoryPage"
 
 export default function App() {
   return (
@@ -18,6 +20,8 @@ export default function App() {
           <Route index element={<Dashboard />} />
           <Route path="inventory" element={<Inventory />} />
           <Route path="categories" element={<Categories />} />
+          <Route path="categories/:name" element={<CategoryDetails />} />
+          <Route path="/history" element={<HistoryPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />

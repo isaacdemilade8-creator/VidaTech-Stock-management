@@ -1,29 +1,37 @@
 // src/context/InventoryContext.jsx
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useRef, useState, useEffect } from "react";
 
 const InventoryContext = createContext();
 
 export function InventoryProvider({ children }) {
+  const initialized = useRef(false);
+
   const [products, setProducts] = useState([]);
 
   // =============================
-  // Load from localStorage
+  // Load ONCE from localStorage
   // =============================
 
   useEffect(() => {
+    if (initialized.current) return;
+
     const saved = localStorage.getItem("inventoryProducts");
 
     if (saved) {
       setProducts(JSON.parse(saved));
     }
+
+    initialized.current = true;
   }, []);
 
   // =============================
-  // Save to localStorage
+  // Save on Change
   // =============================
 
   useEffect(() => {
+    if (!initialized.current) return;
+
     localStorage.setItem(
       "inventoryProducts",
       JSON.stringify(products)

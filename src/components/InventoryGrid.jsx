@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 
 export default function InventoryGrid({ products, onRestock, onSell, onDelete, onUpdate }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
       <AnimatePresence>
         {products.length === 0 && (
           <motion.p
