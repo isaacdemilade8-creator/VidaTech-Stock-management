@@ -27,7 +27,20 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
-  const value = { user, login, logout, isAuthenticated: !!user };
+  const updateProfile = (updatedData) => {
+  setUser((prev) => ({
+    ...prev,
+    ...updatedData,
+  }));
+};
+
+const value = {
+  user,
+  login,
+  logout,
+  updateProfile,
+  isAuthenticated: !!user,
+};
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

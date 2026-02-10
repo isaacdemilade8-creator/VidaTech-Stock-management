@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Categories from "./pages/Categories";
 import CategoryDetails from "./pages/CategoryDetails";
 import HistoryPage from "./pages/HistoryPage"
+import Profile from "./pages/Profile";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="categories" element={<Categories />} />
           <Route path="categories/:name" element={<CategoryDetails />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />

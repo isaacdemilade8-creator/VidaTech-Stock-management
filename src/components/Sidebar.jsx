@@ -99,6 +99,12 @@ export default function Sidebar() {
           >
             <Layers size={18} /> History
           </NavLink>
+          <NavLink
+  to="/profile"
+  className="block px-4 py-2 hover:bg-purple-500 hover:text-black rounded absolute bottom-5 bg-purple-700 text-white"
+>
+  User-profile
+</NavLink>
         </nav>
       </aside>
     </>

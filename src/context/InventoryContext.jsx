@@ -1,5 +1,3 @@
-// src/context/InventoryContext.jsx
-
 import { createContext, useContext, useRef, useState, useEffect } from "react";
 
 const InventoryContext = createContext();
@@ -7,11 +5,30 @@ const InventoryContext = createContext();
 export function InventoryProvider({ children }) {
   const initialized = useRef(false);
 
-  const [products, setProducts] = useState([]);
+  const [history, setHistory] = useState([]);
 
-  // =============================
-  // Load ONCE from localStorage
-  // =============================
+  useEffect(() => {
+  const saved = localStorage.getItem("inventoryHistory");
+  if (saved) setHistory(JSON.parse(saved));
+}, []);
+
+useEffect(() => {
+  localStorage.setItem("inventoryHistory", JSON.stringify(history));
+}, [history]);
+
+// Action wrapper
+const logHistory = (action, product) => {
+  const entry = {
+    id: Date.now(),
+    action,
+    product: product.name,
+    quantity: product.quantity,
+    date: new Date().toLocaleString(),
+  };
+  setHistory((prev) => [entry, ...prev]);
+};
+
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     if (initialized.current) return;
@@ -25,10 +42,6 @@ export function InventoryProvider({ children }) {
     initialized.current = true;
   }, []);
 
-  // =============================
-  // Save on Change
-  // =============================
-
   useEffect(() => {
     if (!initialized.current) return;
 
@@ -37,10 +50,6 @@ export function InventoryProvider({ children }) {
       JSON.stringify(products)
     );
   }, [products]);
-
-  // =============================
-  // Actions
-  // =============================
 
   const addProduct = (product) => {
     setProducts((prev) => [...prev, product]);

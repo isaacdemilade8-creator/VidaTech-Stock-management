@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Register() {
   const { login } = useContext(AuthContext);
@@ -59,6 +60,7 @@ export default function Register() {
         <button className="w-full h-16 bg-gradient-to-br from-rose-200 via-fuchsia-400 to-indigo-300 rounded-md text-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:border-2 hover:border-red-500">
           Register
         </button>
+        <p className="text-center mt-5">Don't have an account? <NavLink to="/Login" className="hover:text-blue-700 active:text-red-500 active:underline">Login</NavLink></p>
       </form>
     </div>
   );
