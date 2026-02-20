@@ -1,82 +1,25 @@
-import { createContext, useContext, useRef, useState, useEffect } from "react";
+import { createContext, useContext } from "react";
+import { StoreContext } from "./StoreContextFile";
+import { useHistoryLog } from "./HistoryContext";
 
 const InventoryContext = createContext();
 
 export function InventoryProvider({ children }) {
-  const initialized = useRef(false);
+  // Inventory now delegates to StoreContext (single source of truth)
+  // We wrap the store context and expose the same API to preserve compatibility
 
-  const [history, setHistory] = useState([]);
+  const store = useContext(StoreContext);
 
-  useEffect(() => {
-  const saved = localStorage.getItem("inventoryHistory");
-  if (saved) setHistory(JSON.parse(saved));
-}, []);
+  const products = store?.products || [];
+  const { history } = useHistoryLog();
 
-useEffect(() => {
-  localStorage.setItem("inventoryHistory", JSON.stringify(history));
-}, [history]);
-
-// Action wrapper
-const logHistory = (action, product) => {
-  const entry = {
-    id: Date.now(),
-    action,
-    product: product.name,
-    quantity: product.quantity,
-    date: new Date().toLocaleString(),
-  };
-  setHistory((prev) => [entry, ...prev]);
-};
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    if (initialized.current) return;
-
-    const saved = localStorage.getItem("inventoryProducts");
-
-    if (saved) {
-      setProducts(JSON.parse(saved));
-    }
-
-    initialized.current = true;
-  }, []);
-
-  useEffect(() => {
-    if (!initialized.current) return;
-
-    localStorage.setItem(
-      "inventoryProducts",
-      JSON.stringify(products)
-    );
-  }, [products]);
-
-  const addProduct = (product) => {
-    setProducts((prev) => [...prev, product]);
-  };
-
-  const updateProduct = (updated) => {
-    setProducts((prev) =>
-      prev.map((p) =>
-        p.id === updated.id ? updated : p
-      )
-    );
-  };
-
-  const deleteProduct = (id) => {
-    setProducts((prev) =>
-      prev.filter((p) => p.id !== id)
-    );
-  };
+  const addProduct = (product) => store?.addProduct(product);
+  const updateProduct = (product) => store?.updateProduct(product.id, product);
+  const deleteProduct = (id) => store?.deleteProduct(id);
 
   return (
     <InventoryContext.Provider
-      value={{
-        products,
-        addProduct,
-        updateProduct,
-        deleteProduct,
-      }}
+      value={{ products, history, addProduct, updateProduct, deleteProduct }}
     >
       {children}
     </InventoryContext.Provider>

@@ -1,4 +1,3 @@
-// src/components/AddProductForm.jsx
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -8,6 +7,23 @@ export default function AddProductModal({ onAdd }) {
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
+
+  const handleImageChange = (e) => {
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    setImage(reader.result);
+  };
+
+  reader.readAsDataURL(file);
+};
+
+
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -22,11 +38,13 @@ export default function AddProductModal({ onAdd }) {
       quantity: parseInt(quantity),
       price: parseFloat(price),
       category: category || "General",
+      image,
     });
 
     setName("");
     setQuantity("");
     setPrice("");
+    setImage("");
     closeModal();
   };
 
@@ -95,6 +113,12 @@ export default function AddProductModal({ onAdd }) {
                     placeholder="Category / Tag"
                     className="p-2 border rounded"
                   />
+                  <input
+  type="file"
+  accept="image/*"
+  onChange={handleImageChange}
+  className="w-full text-sm"
+/>
 
                   <div className="mt-4 flex justify-end gap-2">
                     <button

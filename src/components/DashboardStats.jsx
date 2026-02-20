@@ -1,30 +1,34 @@
 import CountUp from "react-countup";
+import { Card, CardHeader, CardTitle, CardContent, Badge } from "./ui";
 
 export default function DashboardStats({ products }) {
   const totalProducts = products.length;
   const totalQuantity = products.reduce((acc, p) => acc + p.quantity, 0);
   const totalValue = products.reduce((acc, p) => acc + p.quantity * p.price, 0);
 
+  const stats = [
+    { label: "Total Products", value: totalProducts, color: "bg-blue-50", textColor: "text-blue-700" },
+    { label: "Total Quantity", value: totalQuantity, color: "bg-purple-50", textColor: "text-purple-700" },
+    { label: "Inventory Value", value: `$${totalValue.toFixed(2)}`, color: "bg-emerald-50", textColor: "text-emerald-700", isPrice: true },
+  ];
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-      <div className="bg-white p-4 rounded-xl shadow text-center">
-        <p className="text-sm text-slate-500">Total Products</p>
-        <p className="text-2xl font-bold text-blue-800">
-          <CountUp end={totalProducts} duration={1.5} />
-        </p>
-      </div>
-      <div className="bg-white p-4 rounded-xl shadow text-center">
-        <p className="text-sm text-slate-500">Total Quantity</p>
-        <p className="text-2xl font-bold text-purple-600">
-          <CountUp end={totalQuantity} duration={1.5} />
-        </p>
-      </div>
-      <div className="bg-white p-4 rounded-xl shadow text-center">
-        <p className="text-sm text-slate-500">Total Inventory Value</p>
-        <p className="text-2xl font-bold text-blue-700">
-          $<CountUp end={totalValue} duration={1.5} decimals={2} />
-        </p>
-      </div>
+      {stats.map((stat) => (
+        <Card key={stat.label} className={stat.color}>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-slate-600">
+              {stat.label}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className={`text-3xl font-bold ${stat.textColor}`}>
+              {stat.isPrice ? stat.value : <CountUp end={stat.value} duration={1.5} />}
+            </div>
+            <Badge variant="success" className="mt-3 text-xs">↑ 12%</Badge>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
