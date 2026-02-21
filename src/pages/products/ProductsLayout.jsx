@@ -12,7 +12,7 @@ export default function ProductsLayout() {
       <h1 className="text-3xl font-bold mb-6">Products</h1>
 
       {/* Optional: Tabs or breadcrumbs */}
-      <nav className="flex gap-4 mb-6 text-sm font-medium text-gray-500">
+      <nav className="flex gap-4 mb-6 text-sm font-medium text-gray-500 overflow-auto">
         <span className={location.pathname.endsWith("/list") ? "text-purple-700" : ""}>
           Product List
         </span>
@@ -43,7 +43,7 @@ export default function ProductsLayout() {
       </nav>
 
       {/* Nested routes render here */}
-      <div className="bg-white p-4 rounded-xl shadow min-h-[400px]">
+      <div className="bg-white p-4 rounded-xl shadow min-h-[400px] overflow-auto">
         <Outlet />
       </div>
     </div>
