@@ -28,9 +28,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6 md:space-y-10 pb-8">
-      {/* Premium Header Section */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 md:p-12 text-white shadow-2xl border border-slate-700/50">
-        {/* Decorative elements */}
         <div className="absolute -right-20 -top-20 w-40 h-40 bg-purple-600/20 rounded-full blur-3xl"></div>
         <div className="absolute -left-20 bottom-0 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl"></div>
         
@@ -54,14 +52,11 @@ export default function Dashboard() {
         <DashboardStats products={products} />
       </div>
 
-      {/* Main Content Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Recent Products - Takes 2 columns on large screens */}
         <div className="lg:col-span-2">
           <RecentProducts products={products} />
         </div>
 
-        {/* Quick Stats Card - Premium Styling */}
         <Card className="h-full bg-gradient-to-br from-slate-50 via-slate-50 to-blue-50 border-slate-200/80 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader className="border-b border-slate-200/50 pb-4">
             <CardTitle className="flex items-center gap-3 text-slate-900">
