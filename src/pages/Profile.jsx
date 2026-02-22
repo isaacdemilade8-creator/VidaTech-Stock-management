@@ -54,25 +54,25 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 md:px-6 space-y-4 md:space-y-6">
       {/* Header */}
-      <div className="space-y-2">
-        <h1 className="text-4xl font-bold text-slate-900">User Profile</h1>
-        <p className="text-slate-600">Manage your account settings and preferences</p>
+      <div className="space-y-1 md:space-y-2">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">User Profile</h1>
+        <p className="text-xs md:text-sm text-slate-600">Manage your account settings and preferences</p>
       </div>
 
       {/* Avatar Card */}
       <Card className="bg-gradient-to-br from-slate-50 to-slate-100">
-        <CardContent className="pt-6">
-          <div className="flex flex-col items-center text-center space-y-4">
+        <CardContent className="pt-4 md:pt-6">
+          <div className="flex flex-col items-center text-center space-y-3 md:space-y-4">
             <div className="relative">
               <img
                 src={avatarPreview || "https://via.placeholder.com/120"}
                 alt="Avatar"
-                className="w-28 h-28 rounded-full object-cover shadow-lg border-4 border-white"
+                className="w-24 md:w-28 h-24 md:h-28 rounded-full object-cover shadow-lg border-4 border-white"
               />
-              <label className="absolute bottom-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white p-2 rounded-full cursor-pointer hover:shadow-lg transition">
-                <Upload size={18} />
+              <label className="absolute bottom-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white p-1.5 md:p-2 rounded-full cursor-pointer hover:shadow-lg transition">
+                <Upload size={16} className="md:size-18" />
                 <input
                   type="file"
                   accept="image/*"
@@ -82,8 +82,8 @@ export default function Profile() {
               </label>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">{user.storeName}</h2>
-              <p className="text-slate-600 text-sm">{user.role || "Store Owner"}</p>
+              <h2 className="text-lg md:text-2xl font-bold text-slate-900">{user.storeName}</h2>
+              <p className="text-xs md:text-sm text-slate-600">{user.role || "Store Owner"}</p>
             </div>
           </div>
         </CardContent>

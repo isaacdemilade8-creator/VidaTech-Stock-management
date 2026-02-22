@@ -17,12 +17,12 @@ export default function CategoryChart({ products }) {
   const colors = ["#6B5BFF", "#4F46E5", "#8B5CF6", "#6366F1", "#A78BFA"];
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow w-full">
-      <h2 className="font-bold text-xl mb-4 text-center md:text-left">
+    <div className="bg-white p-3 md:p-4 rounded-xl shadow w-full">
+      <h2 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-center md:text-left">
         Category Distribution
       </h2>
 
-      <div className="w-full h-[250px] sm:h-[300px] md:h-[350px]">
+      <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie

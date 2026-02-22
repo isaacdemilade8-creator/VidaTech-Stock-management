@@ -55,15 +55,15 @@ export default function Sidebar() {
     <>
       {/* Mobile Header */}
       <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b border-slate-200 shadow-sm">
-        <div className="flex items-center justify-between px-4 py-3">
-          <h1 className="text-lg font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+        <div className="flex items-center justify-between px-3 py-2.5">
+          <h1 className="text-base md:text-lg font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
             Inventory
           </h1>
           <button
             onClick={() => setOpen(true)}
-            className="p-2 hover:bg-slate-100 rounded-lg transition"
+            className="p-1.5 md:p-2 hover:bg-slate-100 rounded-lg transition"
           >
-            <Menu size={24} className="text-slate-700" />
+            <Menu size={20} className="text-slate-700" />
           </button>
         </div>
       </header>
@@ -83,20 +83,20 @@ export default function Sidebar() {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-slate-200">
-          <h2 className="text-lg font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+        <div className="flex items-center justify-between p-3 md:p-4 border-b border-slate-200">
+          <h2 className="text-sm md:text-lg font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
             InvControl
           </h2>
           <button
-            className="md:hidden p-2 hover:bg-slate-100 rounded-lg transition"
+            className="md:hidden p-1.5 md:p-2 hover:bg-slate-100 rounded-lg transition"
             onClick={() => setOpen(false)}
           >
-            <X size={20} className="text-slate-700" />
+            <X size={18} className="text-slate-700" />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-3 md:p-4 space-y-1 overflow-y-auto">
           {/* Dashboard */}
           <NavLink
             to="/"

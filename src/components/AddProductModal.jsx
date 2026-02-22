@@ -81,8 +81,8 @@ export default function AddProductModal({ onAdd }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="bg-white rounded-xl shadow-xl w-full max-w-md p-6">
-                <Dialog.Title className="text-2xl font-bold mb-4">
+              <Dialog.Panel className="bg-white rounded-xl shadow-xl w-full max-w-sm md:max-w-md p-4 md:p-6 max-h-[90vh] overflow-y-auto">
+                <Dialog.Title className="text-xl md:text-2xl font-bold mb-4">
                   Add New Product
                 </Dialog.Title>
 
@@ -91,34 +91,34 @@ export default function AddProductModal({ onAdd }) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Product Name"
-                    className="p-2 border rounded"
+                    className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                   <input
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                     type="number"
                     placeholder="Quantity"
-                    className="p-2 border rounded"
+                    className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                   <input
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     type="number"
                     placeholder="Price"
-                    className="p-2 border rounded"
+                    className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                   <input
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     placeholder="Category / Tag"
-                    className="p-2 border rounded"
+                    className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                   <input
-  type="file"
-  accept="image/*"
-  onChange={handleImageChange}
-  className="w-full text-sm"
-/>
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full text-xs md:text-sm cursor-pointer"
+                  />
 
                   <div className="mt-4 flex justify-end gap-2">
                     <button

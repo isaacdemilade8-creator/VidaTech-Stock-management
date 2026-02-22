@@ -17,19 +17,19 @@ export default function InventoryFilter({ onSearch, onFilter }) {
   };
 
   return (
-    <div className="mb-6 flex flex-col sm:flex-row gap-4 justify-between">
+    <div className="mb-4 md:mb-6 flex flex-col gap-3 md:gap-4">
       <input
         type="text"
         placeholder="Search products..."
         value={search}
         onChange={handleSearchChange}
-        className="flex-1 p-2 border rounded-lg"
+        className="flex-1 p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-full"
       />
 
       <select
         value={filter}
         onChange={handleFilterChange}
-        className="p-2 border rounded-lg"
+        className="p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-full md:w-auto"
       >
         <option value="all">All Products</option>
         <option value="low">Low Stock (≤10)</option>

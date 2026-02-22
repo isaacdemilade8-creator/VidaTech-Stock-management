@@ -37,12 +37,12 @@ export default function Categories() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
         <div>
-          <h1 className="text-4xl font-bold text-slate-900">Categories</h1>
-          <p className="text-slate-600 mt-1">Organize your products by category</p>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">Categories</h1>
+          <p className="text-sm md:text-base text-slate-600 mt-1">Organize your products by category</p>
         </div>
-        <Button onClick={() => setShowDialog(true)} className="gap-2">
+        <Button onClick={() => setShowDialog(true)} className="w-full sm:w-auto gap-2">
           <Plus size={18} />
           Add Category
         </Button>

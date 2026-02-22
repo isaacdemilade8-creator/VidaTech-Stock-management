@@ -13,16 +13,16 @@ export default function DashboardStats({ products }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6">
       {stats.map((stat) => (
         <Card key={stat.label} className={stat.color}>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">
+          <CardHeader className="pb-2 px-3 md:px-4 pt-3 md:pt-4">
+            <CardTitle className="text-xs md:text-sm font-medium text-slate-600">
               {stat.label}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className={`text-3xl font-bold ${stat.textColor}`}>
+          <CardContent className="px-3 md:px-4 pb-3 md:pb-4">
+            <div className={`text-xl md:text-2xl lg:text-3xl font-bold ${stat.textColor}`}>
               {stat.isPrice ? stat.value : <CountUp end={stat.value} duration={1.5} />}
             </div>
             <Badge variant="success" className="mt-3 text-xs">↑ 12%</Badge>

@@ -47,16 +47,16 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
-      <Card className="w-full max-w-md shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-3 sm:p-4">
+      <Card className="w-full max-w-sm md:max-w-md shadow-2xl">
         <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="bg-gradient-to-br from-purple-500 to-blue-600 p-3 rounded-full">
-              <LogIn className="h-6 w-6 text-white" />
+          <div className="flex justify-center mb-3 md:mb-4">
+            <div className="bg-gradient-to-br from-purple-500 to-blue-600 p-2 md:p-3 rounded-full">
+              <LogIn className="h-5 md:h-6 w-5 md:w-6 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl">Welcome Back</CardTitle>
-          <CardDescription>Sign in to your inventory store</CardDescription>
+          <CardTitle className="text-xl md:text-2xl">Welcome Back</CardTitle>
+          <CardDescription className="text-xs md:text-sm">Sign in to your inventory store</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">

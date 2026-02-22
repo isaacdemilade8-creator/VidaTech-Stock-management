@@ -58,13 +58,13 @@ export default function ChangePassword() {
   };
 
   return (
-    <div className="max-w-md mx-auto space-y-6">
+    <div className="px-3 sm:px-4 md:px-6 max-w-md mx-auto space-y-4 md:space-y-6">
       {/* Header */}
       <button
         onClick={() => navigate("/profile")}
-        className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition"
+        className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition text-sm md:text-base"
       >
-        <ArrowLeft size={20} />
+        <ArrowLeft size={18} className="md:size-20" />
         Back to Profile
       </button>
 
@@ -72,17 +72,17 @@ export default function ChangePassword() {
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
-            <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-2 rounded-full">
-              <Lock className="h-5 w-5 text-white" />
+            <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-1.5 md:p-2 rounded-full">
+              <Lock className="h-4 md:h-5 w-4 md:w-5 text-white" />
             </div>
             <div>
-              <CardTitle>Change Password</CardTitle>
-              <CardDescription>Update your account password</CardDescription>
+              <CardTitle className="text-lg md:text-xl">Change Password</CardTitle>
+              <CardDescription className="text-xs md:text-sm">Update your account password</CardDescription>
             </div>
           </div>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                 {error}

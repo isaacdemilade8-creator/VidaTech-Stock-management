@@ -79,26 +79,26 @@ export default function Inventory() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-bold text-slate-900">Inventory</h1>
-          <p className="text-slate-600 mt-1">Track and manage your inventory items</p>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">Inventory</h1>
+          <p className="text-xs md:text-sm text-slate-600 mt-1">Track and manage your inventory items</p>
         </div>
-        <Button onClick={() => setShowAddModal(true)} className="gap-2">
+        <Button onClick={() => setShowAddModal(true)} className="gap-2 w-full sm:w-auto">
           <Plus size={18} />
           Add Product
         </Button>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         {statCards.map((stat) => (
           <Card key={stat.label} className={stat.color}>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-600">{stat.label}</CardTitle>
+            <CardHeader className="pb-2 px-3 md:px-4 pt-3 md:pt-4">
+              <CardTitle className="text-xs md:text-sm font-medium text-slate-600">{stat.label}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className={`text-3xl font-bold ${stat.textColor}`}>
+            <CardContent className="px-3 md:px-4 pb-3 md:pb-4">
+              <div className={`text-xl md:text-2xl lg:text-3xl font-bold ${stat.textColor}`}>
                 {stat.isPrice ? stat.value : <CountUp end={stat.value} duration={1.5} />}
               </div>
               <Badge variant="success" className="mt-3 text-xs">↑ 12%</Badge>
@@ -109,20 +109,21 @@ export default function Inventory() {
 
       {/* Search and Filter */}
       <Card>
-        <CardContent className="pt-6 space-y-4">
-          <div className="flex flex-col sm:flex-row gap-3">
+        <CardContent className="pt-4 md:pt-6 space-y-4">
+          <div className="flex flex-col gap-3">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <Input
                 placeholder="Search products..."
-                className="pl-10"
+                className="pl-10 text-sm md:text-base w-full"
                 value={searchTerm}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Button
                 variant="outline"
+                className="flex-1 min-w-[80px] text-xs md:text-sm"
                 onClick={() => {
                   handleFilter("all");
                   setSearchTerm("");
@@ -133,12 +134,14 @@ export default function Inventory() {
               </Button>
               <Button
                 variant="outline"
+                className="flex-1 min-w-[80px] text-xs md:text-sm"
                 onClick={() => handleFilter("low")}
               >
                 Low Stock
               </Button>
               <Button
                 variant="outline"
+                className="flex-1 min-w-[80px] text-xs md:text-sm"
                 onClick={() => handleFilter("high")}
               >
                 In Stock

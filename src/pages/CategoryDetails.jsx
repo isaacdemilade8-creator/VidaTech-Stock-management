@@ -14,13 +14,13 @@ export default function CategoryDetails() {
   );
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-4">
+    <div className="space-y-4 md:space-y-6">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4">
         Category: {name}
       </h1>
 
       {filtered.length === 0 && (
-        <p className="text-slate-500">
+        <p className="text-xs md:text-sm text-slate-500">
           No products in this category.
         </p>
       )}

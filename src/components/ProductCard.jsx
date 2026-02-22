@@ -29,24 +29,24 @@ export default function ProductCard({
     </div>
 
 
-    <div className="p-4 space-y-2">
+    <div className="p-3 md:p-4 space-y-2">
 
-      <h3 className="font-semibold text-lg truncate">
+      <h3 className="font-semibold text-base md:text-lg truncate">
         {product.name}
       </h3>
 
-      <p className="text-sm text-slate-500">
+      <p className="text-xs md:text-sm text-slate-500 truncate">
         {product.category}
       </p>
 
-      <div className="flex justify-between items-center text-sm mt-2">
+      <div className="flex justify-between items-center text-xs md:text-sm mt-2 gap-1">
 
-        <span className="font-bold text-indigo-600">
+        <span className="font-bold text-indigo-600 text-sm md:text-base">
           ₦{product.price}
         </span>
 
         <span
-          className={`px-2 py-1 rounded-full text-xs font-medium
+          className={`px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap
           ${
             product.quantity <= 5
               ? "bg-red-100 text-red-600"
@@ -59,25 +59,25 @@ export default function ProductCard({
       </div>
 
 
-      <div className="flex gap-2 mt-3">
+      <div className="flex gap-1 md:gap-2 mt-3">
 
         <button
           onClick={() => onSell(product.id)}
-          className="bg-yellow-600 text-white w-[30%] px-4 py-2 rounded-lg hover:bg-blue-700 hover:scale-105 transition-all duration-200"
+          className="bg-yellow-600 text-white text-xs md:text-sm flex-1 px-2 md:px-3 py-1.5 md:py-2 rounded-lg hover:bg-yellow-700 hover:scale-105 transition-all duration-200"
         >
           Sell
         </button>
 
         <button
           onClick={() => onRestock(product.id)}
-          className="bg-purple-600 text-white px-4 w-[50%] py-2 rounded-lg hover:bg-blue-700 hover:scale-105 transition-all duration-200"
+          className="bg-purple-600 text-white text-xs md:text-sm flex-1.5 px-2 md:px-3 py-1.5 md:py-2 rounded-lg hover:bg-purple-700 hover:scale-105 transition-all duration-200"
         >
           Restock
         </button>
 
         <button
           onClick={() => onDelete(product.id)}
-          className="bg-red-600 text-white px-4 py-2 w-[20%] rounded-lg hover:bg-blue-700 hover:scale-105 transition-all duration-200"
+          className="bg-red-600 text-white text-xs md:text-sm flex-1 px-2 md:px-3 py-1.5 md:py-2 rounded-lg hover:bg-red-700 hover:scale-105 transition-all duration-200"
         >
           Delete
         </button>

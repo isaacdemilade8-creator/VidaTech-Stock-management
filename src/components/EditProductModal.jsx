@@ -39,8 +39,8 @@ export default function EditProductModal({ product, onUpdate }) {
         <Dialog as="div" className="relative z-50" onClose={closeModal}>
           <div className="fixed inset-0 bg-black bg-opacity-30" />
           <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Dialog.Panel className="bg-white rounded-xl p-6 w-full max-w-md">
-              <Dialog.Title className="text-xl font-bold mb-4">
+            <Dialog.Panel className="bg-white rounded-xl p-4 md:p-6 w-full max-w-sm md:max-w-md max-h-[90vh] overflow-y-auto">
+              <Dialog.Title className="text-lg md:text-xl font-bold mb-4">
                 Edit Product
               </Dialog.Title>
 
@@ -48,27 +48,27 @@ export default function EditProductModal({ product, onUpdate }) {
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Product name"
                 />
                 <input
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   type="number"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Price"
                 />
                 <input
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   type="number"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Quantity"
                 />
                 <input
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 md:p-3 text-sm md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Category"
                 />
 

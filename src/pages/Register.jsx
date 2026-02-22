@@ -68,27 +68,27 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
-      <Card className="w-full max-w-md shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-3 sm:p-4">
+      <Card className="w-full max-w-sm md:max-w-md shadow-2xl">
         <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="bg-gradient-to-br from-emerald-500 to-teal-600 p-3 rounded-full">
-              <UserPlus className="h-6 w-6 text-white" />
+          <div className="flex justify-center mb-3 md:mb-4">
+            <div className="bg-gradient-to-br from-emerald-500 to-teal-600 p-2 md:p-3 rounded-full">
+              <UserPlus className="h-5 md:h-6 w-5 md:w-6 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl">Create Store</CardTitle>
-          <CardDescription>Start managing your inventory today</CardDescription>
+          <CardTitle className="text-xl md:text-2xl">Create Store</CardTitle>
+          <CardDescription className="text-xs md:text-sm">Start managing your inventory today</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleRegister} className="space-y-4">
+          <form onSubmit={handleRegister} className="space-y-3 md:space-y-4">
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                 {error}
               </div>
             )}
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Store Name</label>
+            <div className="space-y-1 md:space-y-2">
+              <label className="text-xs md:text-sm font-medium text-slate-700">Store Name</label>
               <Input
                 type="text"
                 name="storeName"
@@ -100,8 +100,8 @@ export default function Register() {
               />
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Email Address</label>
+            <div className="space-y-1 md:space-y-2">
+              <label className="text-xs md:text-sm font-medium text-slate-700">Email Address</label>
               <Input
                 type="email"
                 name="email"
@@ -113,8 +113,8 @@ export default function Register() {
               />
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Password</label>
+            <div className="space-y-1 md:space-y-2">
+              <label className="text-xs md:text-sm font-medium text-slate-700">Password</label>
               <Input
                 type="password"
                 name="password"
@@ -126,8 +126,8 @@ export default function Register() {
               />
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Confirm Password</label>
+            <div className="space-y-1 md:space-y-2">
+              <label className="text-xs md:text-sm font-medium text-slate-700">Confirm Password</label>
               <Input
                 type="password"
                 name="confirmPassword"
@@ -141,14 +141,14 @@ export default function Register() {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-2"
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-2 text-sm md:text-base"
               disabled={loading}
             >
               {loading ? "Creating account..." : "Create Account"}
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-slate-600">
+          <div className="mt-4 md:mt-6 text-center text-xs md:text-sm text-slate-600">
             Already have an account?{" "}
             <NavLink
               to="/login"
